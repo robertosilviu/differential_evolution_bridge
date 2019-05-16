@@ -1,0 +1,342 @@
+roberto@roberto-dev:~/Tesi/python$ python3 test.py
+/home/roberto/.local/lib/python3.7/site-packages/scipy/optimize/_differentialevolution.py:454: UserWarning: differential_evolution: the 'workers' keyword has overridden updating='immediate' to updating='deferred'
+  " updating='deferred'", UserWarning)
+
+evaporation-rate:64.87027651424567
+diffusion-rate: 50.209895988084114
+ticks: 1793.0
+
+evaporation-rate:37.02270634059672
+diffusion-rate: 26.551133185591127
+ticks: 1799.0
+
+evaporation-rate:55.03872947670801
+diffusion-rate: 92.56882098407625
+ticks: 2212.0
+
+evaporation-rate:4.050452471740961
+diffusion-rate: 2.17916455495223
+ticks: 626.0
+
+evaporation-rate:84.50448026541267
+diffusion-rate: 68.51417353582076
+ticks: 1260.0
+
+evaporation-rate:71.80006329519415
+diffusion-rate: 73.81493852861766
+ticks: 1622.0
+
+evaporation-rate:58.26444740563577
+diffusion-rate: 26.551133185591127
+ticks: 1766.0
+
+evaporation-rate:24.656119199207442
+diffusion-rate: 19.685344751372288
+ticks: 2306.0
+
+evaporation-rate:66.5241089825265
+diffusion-rate: 15.84948663966368
+ticks: 1439.0
+
+evaporation-rate:46.6108530676201
+diffusion-rate: 68.51417353582076
+ticks: 2347.0
+differential_evolution step 1: f(x)= 626
+
+evaporation-rate:38.48823909878152
+diffusion-rate: 9.714750934387823
+ticks: 1518.0
+
+evaporation-rate:58.199786890418345
+diffusion-rate: 97.36673277035155
+ticks: 1779.0
+
+evaporation-rate:56.044537409273545
+diffusion-rate: 5.101141976755784
+ticks: 1391.0
+
+evaporation-rate:32.920274541876225
+diffusion-rate: 85.10366297733549
+ticks: 2865.0
+
+evaporation-rate:87.071526738228
+diffusion-rate: 24.998440888957038
+ticks: 1189.0
+differential_evolution step 2: f(x)= 626
+
+evaporation-rate:71.80006329519415
+diffusion-rate: 4.851895401428671
+ticks: 1249.0
+
+evaporation-rate:97.81594067710263
+diffusion-rate: 79.53835789730036
+ticks: 1365.0
+
+evaporation-rate:48.48955406378465
+diffusion-rate: 16.159145811736053
+ticks: 1363.0
+
+evaporation-rate:19.081991443198095
+diffusion-rate: 5.101141976755784
+ticks: 1455.0
+
+evaporation-rate:34.52075638914679
+diffusion-rate: 60.811564439232534
+ticks: 2503.0
+differential_evolution step 3: f(x)= 626
+
+evaporation-rate:7.3608379374339705
+diffusion-rate: 63.74396003607117
+ticks: 798.0
+
+evaporation-rate:50.10937348042788
+diffusion-rate: 4.7675960548374405
+ticks: 1527.0
+
+evaporation-rate:18.007473219424057
+diffusion-rate: 1.9583696637935546
+ticks: 1561.0
+
+evaporation-rate:59.53855494081728
+diffusion-rate: 23.875735764801114
+ticks: 1641.0
+
+evaporation-rate:27.096597869715367
+diffusion-rate: 68.340111144329
+ticks: 2628.0
+differential_evolution step 4: f(x)= 626
+
+evaporation-rate:38.37570304241466
+diffusion-rate: 4.108184121038619
+ticks: 1366.0
+
+evaporation-rate:42.03187750979071
+diffusion-rate: 0.25014498886584136
+ticks: 1396.0
+
+evaporation-rate:56.673541608427925
+diffusion-rate: 91.21259176184067
+ticks: 2020.0
+
+evaporation-rate:87.071526738228
+diffusion-rate: 41.05829624151032
+ticks: 1154.0
+
+evaporation-rate:62.44136924751584
+diffusion-rate: 0.4146916130109588
+ticks: 1242.0
+differential_evolution step 5: f(x)= 626
+
+evaporation-rate:14.10508635056425
+diffusion-rate: 46.83693325291799
+ticks: 1416.0
+
+evaporation-rate:42.960443263611104
+diffusion-rate: 18.17636698163329
+ticks: 1570.0
+
+evaporation-rate:64.81251212676695
+diffusion-rate: 87.90142960273423
+ticks: 1651.0
+
+evaporation-rate:6.384830115904535
+diffusion-rate: 45.5926835327311
+ticks: 803.0
+
+evaporation-rate:49.490927196300966
+diffusion-rate: 41.05829624151032
+ticks: 1659.0
+differential_evolution step 6: f(x)= 626
+
+evaporation-rate:1.7257582457934788
+diffusion-rate: 72.46015324037909
+ticks: 794.0
+
+evaporation-rate:7.3608379374339705
+diffusion-rate: 77.46821826627864
+ticks: 879.0
+
+evaporation-rate:91.27434095086605
+diffusion-rate: 2.17916455495223
+ticks: 1188.0
+
+evaporation-rate:1.7257582457934788
+diffusion-rate: 63.102268211210074
+ticks: 797.0
+
+evaporation-rate:71.51902572733476
+diffusion-rate: 4.84080843328956
+ticks: 1494.0
+differential_evolution step 7: f(x)= 626
+
+evaporation-rate:4.728293942604623
+diffusion-rate: 14.785301198198319
+ticks: 604.0
+
+evaporation-rate:5.671687405485152
+diffusion-rate: 72.46015324037909
+ticks: 602.0
+
+evaporation-rate:0.8147077782745598
+diffusion-rate: 14.33964357045162
+ticks: 753.0
+
+evaporation-rate:7.964038636071024
+diffusion-rate: 30.467965564237705
+ticks: 556.0
+
+evaporation-rate:1.7257582457934788
+diffusion-rate: 78.49161484985484
+ticks: 787.0
+differential_evolution step 8: f(x)= 556
+
+evaporation-rate:10.444652444647275
+diffusion-rate: 26.676278904679894
+ticks: 834.0
+
+evaporation-rate:5.48342482749478
+diffusion-rate: 34.25965222379552
+ticks: 908.0
+
+evaporation-rate:12.45847534038225
+diffusion-rate: 40.60705743026501
+ticks: 966.0
+
+evaporation-rate:12.45847534038225
+diffusion-rate: 40.60705743026501
+ticks: 951.0
+
+evaporation-rate:12.45847534038225
+diffusion-rate: 40.60705743026501
+ticks: 1284.0
+differential_evolution step 9: f(x)= 556
+
+evaporation-rate:8.614952142550997
+diffusion-rate: 14.33964357045162
+ticks: 635.0
+
+evaporation-rate:10.664297004787521
+diffusion-rate: 30.467965564237705
+ticks: 743.0
+
+evaporation-rate:10.19660649600425
+diffusion-rate: 41.28853879810158
+ticks: 1238.0
+
+evaporation-rate:12.896864864720747
+diffusion-rate: 41.59602934216409
+ticks: 1478.0
+
+evaporation-rate:9.545692989524284
+diffusion-rate: 1.4946016386666798
+ticks: 1618.0
+differential_evolution step 10: f(x)= 556
+
+evaporation-rate:7.964038636071024
+diffusion-rate: 30.467965564237705
+ticks: 816.0
+
+evaporation-rate:7.964038636071024
+diffusion-rate: 30.467965574237706
+ticks: 839.0
+
+evaporation-rate:7.964038646071024
+diffusion-rate: 30.467965564237705
+ticks: 734.0
+
+evaporation-rate:99.0
+diffusion-rate: 0.0
+ticks: 971.0
+
+evaporation-rate:99.0
+diffusion-rate: 1e-08
+ticks: 1358.0
+
+evaporation-rate:99.00000001
+diffusion-rate: 0.0
+ticks: 1304.0
+
+evaporation-rate:57.487907177820055
+diffusion-rate: 13.89329003238014
+ticks: 1807.0
+
+evaporation-rate:57.487907177820055
+diffusion-rate: 13.89329004238014
+ticks: 1548.0
+
+evaporation-rate:57.487907187820056
+diffusion-rate: 13.89329003238014
+ticks: 1394.0
+
+evaporation-rate:12.983891774399137
+diffusion-rate: 28.787918358005722
+ticks: 3509.0
+
+evaporation-rate:12.983891774399137
+diffusion-rate: 28.787918368005723
+ticks: 1693.0
+
+evaporation-rate:12.983891784399137
+diffusion-rate: 28.787918358005722
+ticks: 2441.0
+
+evaporation-rate:8.355364874548641
+diffusion-rate: 30.33699628375024
+ticks: 834.0
+
+evaporation-rate:8.355364874548641
+diffusion-rate: 30.33699629375024
+ticks: 895.0
+
+evaporation-rate:8.355364884548642
+diffusion-rate: 30.33699628375024
+ticks: 754.0
+
+evaporation-rate:8.04299886101427
+diffusion-rate: 30.441539112773125
+ticks: 818.0
+  
+evaporation-rate:8.04299886101427
+diffusion-rate: 30.441539122773126
+ticks: 805.0
+  
+evaporation-rate:8.042998871014271
+diffusion-rate: 30.441539112773125
+ticks: 755.0
+
+evaporation-rate:7.983313436091834
+diffusion-rate: 30.46151466357721
+ticks: 539.0
+
+evaporation-rate:7.983313436091834
+diffusion-rate: 30.46151467357721
+ticks: 876.0
+
+evaporation-rate:7.983313446091834
+diffusion-rate: 30.46151466357721
+ticks: 855.0
+
+evaporation-rate:7.974515927590791
+diffusion-rate: 30.46445901855567
+ticks: 589.0
+
+evaporation-rate:7.974515927590791
+diffusion-rate: 30.46445902855567
+ticks: 864.0
+
+evaporation-rate:7.974515937590791
+diffusion-rate: 30.46445901855567
+ticks: 896.0
+
+evaporation-rate:7.969756868291617
+diffusion-rate: 30.466051783136532
+ticks: 1076.0
+
+evaporation-rate:7.969756868291617
+diffusion-rate: 30.466051793136533
+ticks: 644.0
+^Z
+[2]+  Stopped                 python3 test.py
+
+
+

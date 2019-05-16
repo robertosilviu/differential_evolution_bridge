@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title>NetLogo User Manual: Palette Extension – </title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="netlogo.css" type="text/css" />
+</head>
+<body>
+<h1 id="netlogo-palette-extension">NetLogo Palette Extension</h1>
+<p>The NetLogo palette extension allows to map values to colors. The colors go beyond NetLogo colors, including ColorBrewer color schemes or arbitrary RGB colors. Additionally, it provides a primitive to map to color gradients and a primitive to launch a ColorBrewer dialog for easy scheme selection.</p>
+<h2 id="getting-started">Getting Started</h2>
+<p>To get started with palettes add to the top of your Code tab:</p>
+<pre><code>extensions [palette]</code></pre>
+<p>you can then call any of the primitives by adding <code>palette:</code> before the primitive:</p>
+<pre><code>palette:scale-gradient
+palette:scale-scheme
+
+palette:scheme-color
+palette:scheme-dialog</code></pre>
+<p>The palette extension primitives return a list containing RGB colors <code>[[r g b][r g b]...[r g b]]</code>, except for <code>palette:scheme-dialog</code> which opens a dialog.</p>
+<h3 id="what-colors-should-i-use">What colors should I use ?</h3>
+<p>ColorBrewer has many colors where to start. ColorBrewer has three schemes Sequential, Divergent and Qualitative. The use of ColorBrewer for maps is discussed at length in this paper (Harrower, Brewer 2003). Choosing the right colors is a design problem, thus, there are many acceptable solution. However, these guidelines might be useful for choosing colors in Agent Based Models:</p>
+<ul>
+<li>Sequential colors are best for continuous natural phenomena models such as as heat diffusion in physics or fire in earth sciences.</li>
+<li>Divergent colors are useful for highlighting a middle value in a model. It can be also applied to the heat diffusion model if the goal is to highlight the middle temperature.</li>
+<li>Qualitative colors are best for choosing colors in models where color denotes category and not value.</li>
+<li>For agents that cover large areas avoid strong colors and try to use pastel colors. However, for a low number of small isolated agents try to use strong colors such as such a accent.</li>
+<li>The main goal is to avoid having a large area covered with agents with a bright color and or having small areas having a muted pastel color.</li>
+<li>If you are coloring both turtles and patches, make sure they have different ranges of hue, saturation and value. E.g. Use different hues of pastel for patches and accent for turtles</li>
+</ul>
+<h3 id="should-i-use-a-continuous-color-gradient-or-just-a-discrete-color-set">Should I use a continuous color gradient or just a discrete color set ?</h3>
+<p>The answer depends on the task that your will be asking from your user.</p>
+<p>For example, gradients are more aesthetic thus are more memorable than discrete colors. Consequently, a gradient can be a better choice for presentations where the main goal of the image is to be attractive and memorable. However, binning values in a discrete set of colors simplifies tasks such as estimation and counting by removing unnecessary detail to display the big picture. Thus, discrete colors can be a better choice for a paper where the user will have the time and interest to study the visualization.</p>
+<p>In order to see the difference you can turn on and off the gradient in the Heat Diffusion model. You can observe that turning gradient on makes the model more aesthetic, but it becomes harder to estimate the value of a patch at a given position.</p>
+<h2 id="example-models">Example Models</h2>
+<p>There is an example of using the palette primitives in the Code Examples section of the models library:</p>
+<ul>
+<li>Palette Example</li>
+</ul>
+<p>And one Sample Model that uses the extension:</p>
+<ul>
+<li>Heat Diffusion - Alternative Gradient</li>
+</ul>
+<h2 id="documentation">Documentation</h2>
+<p>Color mapping using NetLogo Built-in Primitives Colors mapping using NetLogo Palette Extension</p>
+<p>Be sure to check to ColorBrewer web page. To get a deeper understanding of how to use the color schemes read the ColorBrewer paper (Harrower, Brewer 2003)</p>
+<h2 id="palette-extension-dictionary">Palette Extension Dictionary</h2>
+<h3 id="palettescale-gradient">palette:scale-gradient</h3>
+<p><code>scale-gradient</code> <em>rgb-color-list</em> <em>number</em> <em>range1</em> <em>range2</em></p>
+<p>Reports an RGB color proportional to <em>number</em> using a gradient generated with <em>rgb-color-list</em>. An <em>rgb-color-list</em> consist of a list containing RGB list with three values between 0 and 255: [[r1 g1 b1] [r2 g2 b2] [r3 g3 b3] ...]</p>
+<p>If <em>range1</em> is less than <em>range2</em>, the color will be directly mapped to gradient colors. While, if <em>range2</em> is less than <em>range1</em>, the color gradient is inverted.</p>
+<p>If <em>number</em> is less than <em>range1</em>, then the first color of is <em>RGB-color-list</em> is chosen.</p>
+<p>If <em>number</em> is grater than <em>range2</em>, then the last color of is <em>RGB-color-list</em> is chosen.</p>
+<pre><code>ask patches
+[
+  set pcolor palette:scale-gradient [[255 0 0] [0 0 255]] pxcor min-pxcor max-pxcor
+]
+
+;; colors each patch with a color proportional to the gradient</code></pre>
+<h3 id="palettescale-scheme">palette:scale-scheme</h3>
+<p><code>scale-scheme</code> <em>scheme-type</em> <em>scheme-color</em> <em>number-of-classes</em> <em>number</em> <em>range1</em> <em>range2</em></p>
+<p>Reports an RGB color proportional to <em>number</em> using the color brewer schemes. It takes six arguments the first three arguments define the ColorBrewer legend. Fir the user should select a scheme-type which can be &quot;Sequential&quot;, &quot;Divergent, Qualitative&quot;. Then it should select a variety of scheme-colors which depending on the scheme-color can have names such as &quot;Reds&quot;, &quot;Divergent&quot;, &quot;Set1&quot;. Finally the user should select the number of classes with a minimum of 3 and a maximum between 9 and 11. For more information go to http://www.colorbrewer.org or consult the scheme-dialog primitive.</p>
+<p>If <em>range1</em> is less than <em>range2</em>, the color will be directly mapped to scheme colors. While, if <em>range2</em> is less than <em>range1</em>, the color scheme selection is inverted.</p>
+<p>If <em>number</em> is less than <em>range1</em>, then the first color of the resulting ColorBrewer legend is chosen.</p>
+<p>If <em>number</em> is grater than <em>range2</em>, then the last color of the resulting ColorBrewer legend is chosen.</p>
+<pre><code>ask patches
+[
+  set pcolor palette:scale-scheme [[255 0 0] [0 0 255]] pxcor min-pxcor max-pxcor
+]
+
+;; colors each patch with a color from the Color Brewer Schemes</code></pre>
+<h3 id="palettescheme-colors">palette:scheme-colors</h3>
+<p><code>scheme-colors</code> <em>scheme-type</em> <em>scheme-color</em> <em>number-of-classes</em></p>
+<p>report a list of RGB colors with the size specified in the a number of classes</p>
+<pre><code>show palette:scheme-colors &quot;Divergent&quot; &quot;Spectral&quot; 3
+=&gt; [[252 141 89] [255 255 191] [153 213 148]]
+
+
+; The schemes-color primitive can be used with the scale-gradient primitive
+ask patches
+  [set pcolor palette:scale-gradient palette:scheme-colors &quot;Divergent&quot; &quot;Spectral&quot; 9 pxcor min-pxcor max-pxcor]</code></pre>
+<h3 id="palettescale-gradient-1">palette:scale-gradient</h3>
+<p><code>scale-gradient</code> <em>rgb-color-list</em> <em>number</em> <em>range1</em> <em>range2</em></p>
+<p>Reports an RGB color proportional to number using a gradient generated with <em>rgb-color-list</em>. An <em>rgb-color-list</em> consist of a list containing RGB list with three values between 0 and 255: [[r1 g1 b1] [r2 g2 b2] [r3 g3 b3] ...]</p>
+<p>If <em>range1</em> is less than <em>range2</em>, the color will be directly mapped to gradient colors. While, if <em>range2</em> is less than <em>range1</em>, the color gradient is inverted.</p>
+<p>If <em>number</em> is less than <em>range1</em>, then the first color of is <em>RGB-color-list</em> is chosen.</p>
+<p>If <em>number</em> is grater than <em>range2</em>, then the last color of is <em>RGB-color-list</em> is chosen.</p>
+<pre><code>ask patches
+[
+  set pcolor palette:scale-gradient [[255 0 0] [0 0 255]] pxcor min-pxcor max-pxcor
+]
+
+;; colors each patch with a color proportional to the gradient</code></pre>
+<h2 id="references">References</h2>
+<p>ColorBrewer http://www.colorbrewer.org</p>
+<p>HARROWER, M. and C. BREWER (2003). ColorBrewer: An online tool for selecting color schemes for maps. The Cartographic Journal 40(1): 27-37. )</p>
+<p>HEALEY, C G (2006) Perception in Visualization, (comprehensive review updated regularly).</p>
+<p>HEALEY, C G, BOOTH K S, and ENNS, J T (1995). Visualizing Real-Time Multivariate Data Using Preattentive Processing ACM Transactions on Modeling and Computer Simulation 5, 3, 190-221.</p>
+<p>TUFTE, E (1983) The Visual Display of Quantitative Information , Graphics Press.</p>
+<p>WARE, C (2004) Information Visualization, 2nd Ed., Morgan Kaufmann. Feedback</p>
+<h2 id="terms-of-use">Terms of Use</h2>
+<p>Copyright 1999-2015 by Uri Wilensky, Daniel Kornhauser.</p>
+<p>The MIT License</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+</body>
+</html>

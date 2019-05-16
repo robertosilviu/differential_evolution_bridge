@@ -1,0 +1,5 @@
+Time Slot: 0
+Targets Amount: 70
+Found: 69
+Percentage: 98.57142857142858
+Average Percentage: 98.57142857142858
