@@ -1,3 +1,3 @@
-netlogo-5.3.1-64/* linguistic-vendored
-sciadro-3.1/* linguistic-vendored
+netlogo-5.3.1-64/* linguist-vendored
+sciadro-3.1/* linguist-vendored
 *.py linguist-language=Python
