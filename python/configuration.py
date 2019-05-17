@@ -81,9 +81,10 @@ class Configuration():
 
     # create list for differential_evolution algorythm
     def createBoundsList(self):
-        self.bounds=[]
+        bounds=[]
         for key,value in self.paramBoundaries.items():
-            self.bounds.append(value)
+            bounds.append(value)
+        return bounds
 
     # name passed as 'name'
     def addParameter(self,name,value,min_bounder,max_bounder):
@@ -100,12 +101,23 @@ class Configuration():
             + ', bounds = ' + str(self.paramBoundaries[name])
          )
     
+    # set parameters value from a specified array
+    # the order of values in the array must
+    # be the same of Configuration.parameters
+    def refreshConfiguration(self,bounds):
+        count=0
+        for key,value in self.parameters.items():
+            self.parameters[key]=bounds[count]
+            count+=1
+    
+    # save parameters to JSON file
     def save_toFile(self):
         filename='optimized_parameters.json'
         with open(filename,'w') as f_obj:
             json.dump(self.parameters,f_obj)
             print('saved optimized parameters to file!')
     
+    # load parameters from JSON file
     def loadParameters_fromFile(self):
         filename='optimized_parameters.json'
         try:
@@ -115,3 +127,5 @@ class Configuration():
             print('file not found!')
         else:
             print('loaded parameters from file!')
+        
+    
