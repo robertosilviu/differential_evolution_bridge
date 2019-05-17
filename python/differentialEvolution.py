@@ -1,5 +1,4 @@
 from configuration import Configuration
-from netlogoDialog import NetlogoDialog
 from scipy.optimize import differential_evolution
 import pyNetLogo
 
@@ -14,11 +13,6 @@ netlogo=pyNetLogo.NetLogoLink(gui='false',
                             netlogo_home=netlogo_path,
                             netlogo_version='5')
 netlogo.load_model(model_path)
-#create array of only parameters boundaries
-parameters_config.createBoundsList()
-
-#pass configuration parameters to netlogo class for dialog
-#netlogo.passConfigurationParams(parameters_config.paramBoundaries)
 
 def eseguiSimulazione(x):
         #set scenario
@@ -55,10 +49,32 @@ def eseguiSimulazione(x):
         #netlogo.kill_workspace()
         return tick_number
 
+# verify if Netlogo model uses parameters
+# from configuration.txt or the ones specified in python
+def modifyModel(model_home_home_path):
+    print('verifying Netlogo model configuration...')
+    filename=model_home_home_path+'/include/setup_procedures.nls'
+    with open(filename) as f_obj:
+        content=f_obj.read()
+    f_obj.close()
+
+    if ';import_configuration' not in content:
+        content=content.replace('import_configuration',';import_configuration')
+        with open(filename,'w') as f_obj:
+            f_obj.write(content)
+        print(' -> reading of model parameters from configuration.txt disabled')
+    else:
+        print(' -> model ready to use')
+    content=None
+
 # differential evolution algorithm
-# get array of bounds
-bounds=parameters_config.bounds
-print('starting optimization')
+
+#create array of only parameters boundaries
+bounds=parameters_config.createBoundsList()
+
+modifyModel('../sciadro-3.1')
+
+print('starting optimization...\n')
 result=differential_evolution(eseguiSimulazione,
                             bounds,
                             disp=True,
