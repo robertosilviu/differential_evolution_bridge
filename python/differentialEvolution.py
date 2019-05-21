@@ -2,18 +2,6 @@ from configuration import Configuration
 from scipy.optimize import differential_evolution
 import pyNetLogo
 
-netlogo_path='../netlogo-5.3.1-64'
-model_path='../sciadro-3.1/SCD src.nlogo'
-
-# parameter configuration initialize
-parameters_config=Configuration()
-
-#open dialog with netlogo
-netlogo=pyNetLogo.NetLogoLink(gui='false',
-                            netlogo_home=netlogo_path,
-                            netlogo_version='5')
-netlogo.load_model(model_path)
-
 def eseguiSimulazione(x):
         #set scenario
         netlogo.command('set selectScenario "dump" ')
@@ -43,9 +31,10 @@ def eseguiSimulazione(x):
             tick_number=netlogo.report('ticks')
         
         # debug
+        print('\n')
         print(optimized_params)
         print('\ntarget found: ' + str(target_found)
-            + '\nticks: ' +str(tick_number) )
+            + '\nticks: ' +str(tick_number) + '\n' )
         #netlogo.kill_workspace()
         return tick_number
 
@@ -62,24 +51,40 @@ def modifyModel(model_home_home_path):
         content=content.replace('import_configuration',';import_configuration')
         with open(filename,'w') as f_obj:
             f_obj.write(content)
+            f_obj.close()
         print(' -> reading of model parameters from configuration.txt disabled')
     else:
         print(' -> model ready to use')
     content=None
 
 # differential evolution algorithm
+def scipy_DE(bounds_list):
+    result=differential_evolution(eseguiSimulazione,
+                                bounds_list,
+                                disp=True,
+                                init='latinhypercube',
+                                tol=0.01,
+                                polish=True,
+                                workers=2)
+    return result.x                     
+if __name__ == '__main__':
+    # path for Netlogo bridge
+    netlogo_path='../netlogo-5.3.1-64'
+    model_path='../sciadro-3.1/SCD src.nlogo'
 
-#create array of only parameters boundaries
-bounds=parameters_config.createBoundsList()
+    # parameter configuration initialize
+    parameters_config=Configuration()
 
-modifyModel('../sciadro-3.1')
+    #open dialog with netlogo
+    netlogo=pyNetLogo.NetLogoLink(gui='false',
+                                netlogo_home=netlogo_path,
+                                netlogo_version='5')
+    netlogo.load_model(model_path)
+    #create array of only parameters boundaries
+    bounds=parameters_config.createBoundsList()
 
-print('starting optimization...\n')
-result=differential_evolution(eseguiSimulazione,
-                            bounds,
-                            disp=True,
-                            init='latinhypercube',
-                            tol=0.01,
-                            polish=True,
-                            workers=1)
-result.x
+    modifyModel('../sciadro-3.1')
+
+    print('starting optimization...\n')
+
+    scipy_DE(bounds)
