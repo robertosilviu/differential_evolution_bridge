@@ -75,7 +75,9 @@ def scipy_DE(bounds_list):
                                 init='latinhypercube',
                                 tol=0.01,
                                 polish=True,
-                                workers=2)
+                                maxiter=20,
+                                popsize=10,
+                                workers=4)
     return result.x                     
 if __name__ == '__main__':
     # parameter configuration initialize
