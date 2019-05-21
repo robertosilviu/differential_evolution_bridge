@@ -1,8 +1,18 @@
 from configuration import Configuration
 from scipy.optimize import differential_evolution
 import pyNetLogo
+import multiprocessing
 
 def eseguiSimulazione(x):
+        # path for Netlogo bridge
+        netlogo_path='../netlogo-5.3.1-64'
+        model_path='../sciadro-3.1/SCD src.nlogo'
+
+        #open dialog with netlogo
+        netlogo=pyNetLogo.NetLogoLink(gui='false',
+                                    netlogo_home=netlogo_path,
+                                    netlogo_version='5')
+        netlogo.load_model(model_path)
         #set scenario
         netlogo.command('set selectScenario "dump" ')
         
@@ -68,23 +78,12 @@ def scipy_DE(bounds_list):
                                 workers=2)
     return result.x                     
 if __name__ == '__main__':
-    # path for Netlogo bridge
-    netlogo_path='../netlogo-5.3.1-64'
-    model_path='../sciadro-3.1/SCD src.nlogo'
-
     # parameter configuration initialize
     parameters_config=Configuration()
-
-    #open dialog with netlogo
-    netlogo=pyNetLogo.NetLogoLink(gui='false',
-                                netlogo_home=netlogo_path,
-                                netlogo_version='5')
-    netlogo.load_model(model_path)
     #create array of only parameters boundaries
     bounds=parameters_config.createBoundsList()
 
     modifyModel('../sciadro-3.1')
 
     print('starting optimization...\n')
-
     scipy_DE(bounds)
