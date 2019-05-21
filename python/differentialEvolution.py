@@ -45,7 +45,7 @@ def eseguiSimulazione(x):
         print(optimized_params)
         print('\ntarget found: ' + str(target_found)
             + '\nticks: ' +str(tick_number) + '\n' )
-        #netlogo.kill_workspace()
+        netlogo.kill_workspace()
         return tick_number
 
 # verify if Netlogo model uses parameters
@@ -75,9 +75,9 @@ def scipy_DE(bounds_list):
                                 init='latinhypercube',
                                 tol=0.01,
                                 polish=True,
-                                maxiter=20,
-                                popsize=10,
-                                workers=4)
+                                maxiter=2,
+                                popsize=1,
+                                workers=2)
     return result.x                     
 if __name__ == '__main__':
     # parameter configuration initialize
