@@ -88,4 +88,9 @@ if __name__ == '__main__':
     modifyModel('../sciadro-3.1')
 
     print('starting optimization...\n')
-    scipy_DE(bounds)
+    result=scipy_DE(bounds)
+    count=0
+    for key,value in parameters_config.parameters.items():
+        value=result[count]
+        count += 1
+    parameters_config.save_toFile()
