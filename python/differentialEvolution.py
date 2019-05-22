@@ -46,7 +46,7 @@ def eseguiSimulazione(x):
         
         # debug
         print('\n')
-        print(optimized_params)
+        #print(optimized_params)
         print('\nticks: ' +str(tick_number) + '\n' )
         netlogo.kill_workspace()
         return tick_number
