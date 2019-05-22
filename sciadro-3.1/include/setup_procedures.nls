@@ -26,7 +26,7 @@ end
 to setupVariables [ randomNumber ]
   
   set mark.startIntensity 1
-  ;import_configuration
+  import_configuration
   setupStrategy
   setupPatches
   setupDrones

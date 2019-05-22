@@ -3,7 +3,28 @@ import json
 class Configuration():
     # class to organize Netlogo simulation parameters
     def __init__(self):
-    
+    # costants
+        self.constants={
+            'strategy?' : 3,
+            'drone.radius': 0.2,
+            'drone.speedMax': 8.5,
+            'drone.cruisingSpeed': 2,
+            'drone.acceleration': 2,
+            'drone.deceleration': -2,
+            'drone.velocityAngularMax': 2.6,
+            'drone.accelerationAng': 7,
+            'drone.decelerationAng': -7,
+            'drone.endurance': 24,
+            'sensing.radius': 2.5,
+            'sensing.angle': 360,
+            'rectangleBase': 5,     #sensingBase
+            'rectangleHeight': 4,     #sensingHeight
+            'drone.reachable.radius': 4,
+            'drone.reachable.angle': 360,
+            'drone.collision.vision': 6,
+            'drone.sight.angleMax': 60,
+            'drone.collision.gapAngle': 20
+        }
     #configuration parameters
         self.parameters={
             'strategy?' : 3,
@@ -41,25 +62,7 @@ class Configuration():
     
     #boundaries of parameters
         self.paramBoundaries={
-            'strategy?' : (3,3),
-            'drone.radius': (0.2,0.2),
-            'drone.speedMax': (8.5,8.5),
-            'drone.cruisingSpeed': (2,2),
-            'drone.acceleration': (2,2),
-            'drone.deceleration': (-2,-2),
-            'drone.velocityAngularMax': (2.6,2.6),
-            'drone.accelerationAng': (7,7),
-            'drone.decelerationAng': (-7,-7),
-            'drone.endurance': (24,24),
-            'sensing.radius': (2.5,2.5),
-            'sensing.angle': (360,360),
-            'rectangleBase': (5,5),     #sensingBase
-            'rectangleHeight': (4,4),     #sensingHeight
-            'drone.reachable.radius': (4,4),
-            'drone.reachable.angle': (360,360),
-            'drone.collision.vision': (6,6),
-            'drone.sight.angleMax': (60,60),
-            'drone.collision.gapAngle': (20,20),
+            
             'mark.radiusTop': (1,13),
             'mark.radiusDown': (13,19),
             'track.evapRate': (0.01,0.2),
@@ -76,8 +79,11 @@ class Configuration():
     # print parameters and boundaries     
     def showParameters(self):
         for key,value in self.parameters.items():
-            bounds=self.paramBoundaries[key]
-            print( key,' =',value,' | bounds= ',bounds)
+            if key in self.paramBoundaries:
+                bounds=self.paramBoundaries[key]
+                print( key,' =',value,' | bounds= ',bounds)
+            else:
+                print( key,' =',value,' | bounds= const value')
 
     # create list for differential_evolution algorythm
     def createBoundsList(self):

@@ -23,19 +23,23 @@ def eseguiSimulazione(x):
         count=0
         # used for visual debug
         optimized_params={}
-        for key,value in parameters_config.parameters.items():
+        for key,value in parameters_config.paramBoundaries.items():
             cmd="set " + key + " " + str(x[count])
             netlogo.command(cmd)
             #used for debug
             optimized_params[key]=x[count]
+
             count += 1
 
         
         #initial target found
         target_found=netlogo.report('percentageTgtsFound')
-
+        tick_number=0
         #continue simulation until stop condition 
         while (target_found<=95):
+            if(tick_number > 1000):
+                tick_number=4000
+                break
             netlogo.repeat_command('go',1)
             target_found=netlogo.report('percentageTgtsFound')
             tick_number=netlogo.report('ticks')
@@ -43,8 +47,7 @@ def eseguiSimulazione(x):
         # debug
         print('\n')
         print(optimized_params)
-        print('\ntarget found: ' + str(target_found)
-            + '\nticks: ' +str(tick_number) + '\n' )
+        print('\nticks: ' +str(tick_number) + '\n' )
         netlogo.kill_workspace()
         return tick_number
 
@@ -77,6 +80,7 @@ def scipy_DE(bounds_list):
                                 polish=True,
                                 maxiter=2,
                                 popsize=1,
+                                updating='deferred',
                                 workers=2)
     return result.x                     
 if __name__ == '__main__':
@@ -85,12 +89,10 @@ if __name__ == '__main__':
     #create array of only parameters boundaries
     bounds=parameters_config.createBoundsList()
 
-    modifyModel('../sciadro-3.1')
+    #modifyModel('../sciadro-3.1')
 
     print('starting optimization...\n')
     result=scipy_DE(bounds)
-    count=0
-    for key,value in parameters_config.parameters.items():
-        value=result[count]
-        count += 1
-    parameters_config.save_toFile()
+    result.x
+    
+    
