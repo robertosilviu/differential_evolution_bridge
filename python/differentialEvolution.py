@@ -1,7 +1,6 @@
 from configuration import Configuration
 from scipy.optimize import differential_evolution
 import pyNetLogo
-import multiprocessing
 
 def eseguiSimulazione(x):
         # path for Netlogo bridge
@@ -22,12 +21,12 @@ def eseguiSimulazione(x):
         #set parameters
         count=0
         # used for visual debug
-        optimized_params={}
+        #optimized_params={}
         for key,value in parameters_config.paramBoundaries.items():
             cmd="set " + key + " " + str(x[count])
             netlogo.command(cmd)
             #used for debug
-            optimized_params[key]=x[count]
+            #optimized_params[key]=x[count]
 
             count += 1
 
@@ -45,9 +44,8 @@ def eseguiSimulazione(x):
             tick_number=netlogo.report('ticks')
         
         # debug
-        print('\n')
         #print(optimized_params)
-        print('\nticks: ' +str(tick_number) + '\n' )
+        print('ticks: ' +str(tick_number) )
         netlogo.kill_workspace()
         return tick_number
 
@@ -76,9 +74,9 @@ def scipy_DE(bounds_list):
                                 bounds_list,
                                 disp=True,
                                 init='latinhypercube',
-                                tol=0.01,
-                                polish=True,
-                                maxiter=2,
+                                atol=1,
+                                tol=0.1,
+                                maxiter=200,
                                 popsize=1,
                                 updating='deferred',
                                 workers=2)
@@ -92,7 +90,16 @@ if __name__ == '__main__':
     #modifyModel('../sciadro-3.1')
 
     print('starting optimization...\n')
-    result=scipy_DE(bounds)
+    result=differential_evolution(eseguiSimulazione,
+                                bounds,
+                                disp=True,
+                                init='latinhypercube',
+                                atol=0,
+                                tol=1,
+                                maxiter=200,
+                                popsize=1,
+                                updating='deferred',
+                                workers=2)    
     result.x
     
     
