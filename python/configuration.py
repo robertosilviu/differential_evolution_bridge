@@ -110,11 +110,14 @@ class Configuration():
     # set parameters value from a specified array
     # the order of values in the array must
     # be the same of Configuration.parameters
-    def refreshConfiguration(self,bounds):
+    def refreshConfiguration(self,x):
         count=0
-        for key,value in self.parameters.items():
-            self.parameters[key]=bounds[count]
+        for key,value in self.paramBoundaries.items():
+            self.parameters[key]=x[count]
             count+=1
+        for key,value in self.constants.items():
+            self.parameters[key]=self.constants[key]
+        print('saved new configuration!')
     
     # save parameters to JSON file
     def save_toFile(self):
