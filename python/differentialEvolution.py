@@ -5,18 +5,15 @@ import multiprocessing
 import sys
 
 netlogo=None
-
+# path for Netlogo bridge
+netlogo_path='../netlogo-5.3.1-64'
+model_path='../sciadro-3.1/SCD src.nlogo'
 def init_worker():
-    global netlogo
-    
+    global netlogo,netlogo_path,model_path
 
-    # path for Netlogo bridge
-    netlogo_path='../netlogo-5.3.1-64'
-    model_path='../sciadro-3.1/SCD src.nlogo'
     #open dialog with netlogo
     netlogo=pyNetLogo.NetLogoLink(gui='false',
                                 netlogo_home=netlogo_path,
-                                jvmargs=['Xmx2G','Xms2G'],
                                 netlogo_version='5')
     netlogo.load_model(model_path)
     #set scenario
@@ -24,15 +21,11 @@ def init_worker():
 
 def eseguiSimulazione(x):
         #setup
-        global netlogo,parameters_config
+        global netlogo,parameters_config,netlogo_path,model_path
         if netlogo is None:
-            # path for Netlogo bridge
-            netlogo_path='../netlogo-5.3.1-64'
-            model_path='../sciadro-3.1/SCD src.nlogo'
             #open dialog with netlogo
             netlogo=pyNetLogo.NetLogoLink(gui='false',
                                 netlogo_home=netlogo_path,
-                                jvmargs=['Xmx2G','Xms2G'],
                                 netlogo_version='5')
             netlogo.load_model(model_path)
             #set scenario
@@ -60,7 +53,7 @@ def eseguiSimulazione(x):
         #continue simulation until stop condition 
         while (target_found<=95):
             if(tick_number > 1000):
-                tick_number=4000
+                tick_number=1000
                 break
             netlogo.repeat_command("go",1)
             target_found=netlogo.report('percentageTgtsFound')
@@ -108,10 +101,11 @@ if __name__ == '__main__':
                                 bounds,
                                 disp=True,
                                 init='latinhypercube',
+                                polish=False,
                                 atol=0,
                                 tol=0.1,
                                 maxiter=200,
-                                popsize=5,
+                                popsize=4,
                                 updating='deferred',
                                 workers=pool.map)    
     except KeyboardInterrupt:
