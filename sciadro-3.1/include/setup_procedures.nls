@@ -10,6 +10,7 @@ to setup [ randomNumber ]
   
   clear-all
   ;show randomNumber
+  file-close-all
   
   importWorld
   setupVariables randomNumber

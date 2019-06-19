@@ -1,0 +1,8 @@
+"BehaviorSpace results (NetLogo 5.3.1)"
+"SCD src.nlogo"
+"dumpExp"
+"05/24/2019 18:08:32:843 +0200"
+"min-pxcor","max-pxcor","min-pycor","max-pycor"
+"-100","100","-100","100"
+"[run number]","selectScenario","[step]","targetExp","expSpace","percentageDronesForDiscovering","dronesOverlap","nObstaclesCollisions"
+"1","""dump""","255","95.23809523809523","33.299410984673266","25","0","0"

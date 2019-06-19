@@ -125,7 +125,7 @@ class Configuration():
         with open(filename,'w') as f_obj:
             json.dump(self.parameters,f_obj)
             print('saved optimized parameters to file!')
-    
+
     # load parameters from JSON file
     def loadParameters_fromFile(self):
         filename='optimized_parameters.json'
